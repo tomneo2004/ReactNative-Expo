@@ -1,9 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, Share } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, Platform } from 'react-native';
 // import logo from './assets/logo.png';
 import * as ImagePicker from 'expo-image-picker';
 import * as Sharing from 'expo-sharing'; 
+import uploadToAnonymousFilesAsync from 'anonymous-files'; 
+// import * as SplashScreen from 'expo-splash-screen';
+
+// SplashScreen.preventAutoHideAsync()
+// .then(()=>setTimeout(async ()=> await SplashScreen.hideAsync(), 5000))
+// .catch(err=>console.log(err));
+
 
 export default function App() {
   const [selectedImage, setSelectedImage] = React.useState<{[key:string]:string} | null>(null);
@@ -18,12 +25,18 @@ export default function App() {
     
     if(pickerResult.cancelled === true) return;
 
-    setSelectedImage({localUri: pickerResult.uri});
+    if(Platform.OS === 'web'){
+      let remoteUri = await uploadToAnonymousFilesAsync(pickerResult.uri);
+      setSelectedImage({localUri: pickerResult.uri, remoteUri});
+    }
+    else{
+      setSelectedImage({localUri: pickerResult.uri, remoteUri:null});
+    }
   }
 
   let openShareDialogAsync = async ()=>{
     if(!await Sharing.isAvailableAsync()){
-      alert(`Uh oh, sharing isn't available on your platform`);
+      alert(`The image is available for sharing at: ${selectedImage.remoteUri}`);
       return;
     }
 
