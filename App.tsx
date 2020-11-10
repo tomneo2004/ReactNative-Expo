@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, Platform } from 'react-native';
+import Button from './Button';
 // import logo from './assets/logo.png';
 import * as ImagePicker from 'expo-image-picker';
 import * as Sharing from 'expo-sharing'; 
@@ -14,6 +15,7 @@ import uploadToAnonymousFilesAsync from 'anonymous-files';
 
 export default function App() {
   const [selectedImage, setSelectedImage] = React.useState<{[key:string]:string} | null>(null);
+
   let openImagePickerAsync = async ()=>{
     let permissionResult = await ImagePicker.requestCameraRollPermissionsAsync();
     if(permissionResult.granted === false){
@@ -43,6 +45,10 @@ export default function App() {
     await Sharing.shareAsync(selectedImage.localUri);
   }
 
+  const clearImage = ()=>{
+    setSelectedImage(null);
+  }
+
   if(selectedImage !== null){
     return (
       <View style={styles.container}>
@@ -53,18 +59,9 @@ export default function App() {
         <Text style={styles.instruction}>
         To share a photo from your phone with a friend, just press the button below!
         </Text>
-        <TouchableOpacity
-        onPress={openImagePickerAsync}
-        style={styles.button}
-        >
-          <Text style={styles.buttonText}>Pick a photo</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-        onPress={openShareDialogAsync}
-        style={styles.button}
-        >
-          <Text style={styles.buttonText}>Share this photo</Text>
-        </TouchableOpacity>
+        <Button title='Pick a photo' onPress={openImagePickerAsync} />
+        <Button title='Share this photo' onPress={openShareDialogAsync} />
+        <Button title='Clear the image' onPress={clearImage} />
         <StatusBar style="auto" />
       </View>
     )
@@ -76,12 +73,7 @@ export default function App() {
       <Text style={styles.instruction}>
         To share a photo from your phone with a friend, just press the button below!
       </Text>
-      <TouchableOpacity
-      onPress={openImagePickerAsync}
-      style={styles.button}
-      >
-        <Text style={styles.buttonText}>Pick a photo</Text>
-      </TouchableOpacity>
+      <Button title='Pick a photo' onPress={openImagePickerAsync} />
       <StatusBar style="auto" />
     </View>
   );
@@ -103,16 +95,6 @@ const styles = StyleSheet.create({
     color:'#888',
     fontSize:18,
     marginHorizontal: 15,
-  },
-  button:{
-    backgroundColor: "blue",
-    padding: 20,
-    marginTop: 20,
-    borderRadius: 5,
-  },
-  buttonText:{
-    fontSize: 20,
-    color: '#fff',
   },
   thumbnail: {
     width: 300,
