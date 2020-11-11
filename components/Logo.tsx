@@ -1,10 +1,17 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-export default function Logo() {
+interface IProps {
+    title: string;
+}
+export default function Logo(props:IProps) {
+    const {
+        title
+    } = props;
+
     return (
         <View style={style.root}>
-            <Text style={style.title}>IMAGE SHARE</Text>
+            <Text style={style.title}>{title}</Text>
             <Text style={style.logo}>🌄</Text>
         </View>
     );
