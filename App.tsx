@@ -7,7 +7,7 @@ import * as ImagePicker from 'expo-image-picker';
 import * as Sharing from 'expo-sharing'; 
 import uploadToAnonymousFilesAsync from 'anonymous-files'; 
 import Logo from './components/Logo';
-// import Constants from 'expo-constants';
+import Constants from 'expo-constants';
 // import * as SplashScreen from 'expo-splash-screen';
 
 // SplashScreen.preventAutoHideAsync()
@@ -72,7 +72,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       {/* <Image source={{ uri: "https://i.imgur.com/TkIrScD.png" }} style={styles.logo} /> */}
-      <Logo title='IMAGE SHARE'/>
+      <Logo title={Constants.manifest.extra.logoTitle}/>
       <Text style={styles.instruction}>
         To share a photo from your phone with a friend, just press the button below!
       </Text>
