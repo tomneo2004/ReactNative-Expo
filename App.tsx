@@ -5,7 +5,8 @@ import { createStackNavigator, StackScreenProps } from '@react-navigation/stack'
 import Button from './components/Button';
 
 type TStackParamList = {
-  [key:string]:any
+  Home: undefined;
+  Details: undefined;
 }
 
 type IHomeProps = StackScreenProps<TStackParamList, 'Home'>;
@@ -23,7 +24,7 @@ function HomeScreen(props:IHomeProps){
   )
 }
 
-type IDetailsProps = StackScreenProps<TStackParamList, 'Home'>;
+type IDetailsProps = StackScreenProps<TStackParamList, 'Details'>;
 
 function DetailsScreen(props:IDetailsProps) {
   const {
