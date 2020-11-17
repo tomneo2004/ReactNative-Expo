@@ -18,6 +18,7 @@ export default function HomeScreen(props:THomeProps){
     <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
       <Text>Home Screen</Text>
       <Button title='Go To Detail' onPress={()=>navigation.navigate('Details', {itemId:97})} />
+      <Button title='Go To Post' onPress={()=>navigation.navigate('Post')} />
     </View>
   )
 }
