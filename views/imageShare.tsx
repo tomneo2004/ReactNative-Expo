@@ -7,12 +7,21 @@ import uploadToAnonymousFilesAsync from 'anonymous-files';
 import Logo from '../components/Logo';
 import Constants from 'expo-constants';
 import { StatusBar } from 'expo-status-bar';
+import { StackScreenProps } from '@react-navigation/stack';
+import { TStackParamList } from '../navigation/navigation';
 
 export interface IImageShareParams {
   title: string;
 }
 
-const ImageShare = () => {
+interface IImageShareProps extends StackScreenProps<TStackParamList, 'ImageShare'>{}
+
+const ImageShare = (props:IImageShareProps) => {
+    const {
+      navigation,
+      route,
+    } = props;
+
     const [selectedImage, setSelectedImage] = React.useState<{[key:string]:string} | null>(null);
 
     let openImagePickerAsync = async ()=>{
@@ -74,6 +83,11 @@ const ImageShare = () => {
           To share a photo from your phone with a friend, just press the button below!
         </Text>
         <Button title='Pick a photo' onPress={openImagePickerAsync} />
+        <Button title='Update title' 
+          onPress={()=>{
+            navigation.setOptions({title: `[${route.params.title}]`})
+          }} 
+          />
         <StatusBar style="auto" />
       </View>
     );
