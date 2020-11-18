@@ -5,12 +5,14 @@ import HomeScreen, {IHomeParams} from '../views/home';
 import DetailsScreen, {IDetailParams} from '../views/detail';
 import PostScreen, {IPostParams} from '../views/post';
 import AddPostScreen, {IAddPostParams} from '../views/addPost';
+import ImageShareScreen, {IImageShareParams} from '../views/imageShare';
 
 export type TStackParamList = {
     Home: IHomeParams;
     Details: IDetailParams;
     Post: IPostParams;
-    AddPost: IAddPostParams
+    AddPost: IAddPostParams;
+    ImageShare: IImageShareParams;
 }
 
 const Stack = createStackNavigator<TStackParamList>();
@@ -25,6 +27,9 @@ export default function Navigation() {
         />
         <Stack.Screen name='Post' component={PostScreen} options={{title:'Post'}} />
         <Stack.Screen name='AddPost' component={AddPostScreen} options={{title:'Add Post'}} />
+        <Stack.Screen name='ImageShare' component={ImageShareScreen} 
+        options={({route})=>({title: route.params.title})} 
+        />
       </Stack.Navigator>
     </NavigationContainer>
   )

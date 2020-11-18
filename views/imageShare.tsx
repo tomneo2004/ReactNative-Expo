@@ -8,6 +8,10 @@ import Logo from '../components/Logo';
 import Constants from 'expo-constants';
 import { StatusBar } from 'expo-status-bar';
 
+export interface IImageShareParams {
+  title: string;
+}
+
 const ImageShare = () => {
     const [selectedImage, setSelectedImage] = React.useState<{[key:string]:string} | null>(null);
 

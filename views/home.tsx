@@ -19,6 +19,9 @@ export default function HomeScreen(props:IHomeProps){
       <Text>Home Screen</Text>
       <Button title='Go To Detail' onPress={()=>navigation.navigate('Details', {itemId:97})} />
       <Button title='Go To Post' onPress={()=>navigation.navigate('Post')} />
+      <Button title='Go To ImageShare' 
+      onPress={()=>navigation.navigate('ImageShare', {title: 'Image Share'})} 
+      />
     </View>
   )
 }
