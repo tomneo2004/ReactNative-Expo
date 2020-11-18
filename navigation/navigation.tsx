@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen, {IHomeProps} from '../views/home';
-import DetailsScreen, {IDetailProps} from '../views/detail';
-import PostScreen, {IPostProps} from '../views/post';
-import AddPostScreen, {IAddPostProps} from '../views/addPost';
+import HomeScreen, {IHomeParams} from '../views/home';
+import DetailsScreen, {IDetailParams} from '../views/detail';
+import PostScreen, {IPostParams} from '../views/post';
+import AddPostScreen, {IAddPostParams} from '../views/addPost';
 
 export type TStackParamList = {
-    Home: IHomeProps;
-    Details: IDetailProps;
-    Post: IPostProps;
-    AddPost: IAddPostProps
+    Home: IHomeParams;
+    Details: IDetailParams;
+    Post: IPostParams;
+    AddPost: IAddPostParams
 }
 
 const Stack = createStackNavigator<TStackParamList>();

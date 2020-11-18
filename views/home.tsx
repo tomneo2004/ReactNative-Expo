@@ -4,12 +4,12 @@ import { View, Text } from 'react-native';
 import Button from '../components/Button';
 import {TStackParamList} from '../navigation/navigation';
 
-export interface IHomeProps {
+export interface IHomeParams {
 }
 
-type THomeProps = StackScreenProps<TStackParamList, 'Home'>;
+interface IHomeProps extends StackScreenProps<TStackParamList, 'Home'>{}
 
-export default function HomeScreen(props:THomeProps){
+export default function HomeScreen(props:IHomeProps){
   const {
     navigation
   } = props;

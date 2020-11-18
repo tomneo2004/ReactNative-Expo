@@ -4,13 +4,13 @@ import { View, Text } from 'react-native';
 import Button from '../components/Button';
 import {TStackParamList} from '../navigation/navigation';
 
-export interface IDetailProps {
+export interface IDetailParams {
     itemId:number;
 }
 
-type TDetailsProps = StackScreenProps<TStackParamList, 'Details'>;
+interface IDetailsProps extends StackScreenProps<TStackParamList, 'Details'>{}
 
-export default function DetailsScreen(props:TDetailsProps) {
+export default function DetailsScreen(props:IDetailsProps) {
   const {
     route,
     navigation

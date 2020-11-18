@@ -4,11 +4,11 @@ import { View, Text, TextInput } from 'react-native';
 import Button from '../components/Button';
 import { TStackParamList } from '../navigation/navigation';
 
-export interface IAddPostProps {}
+export interface IAddPostParams {}
 
-type TAddPostProps = StackScreenProps<TStackParamList, 'AddPost'>;
+interface IAddPostProps extends StackScreenProps<TStackParamList, 'AddPost'>{}
 
-const AddPost = (props:TAddPostProps) => {
+const AddPost = (props:IAddPostProps) => {
     const {
         navigation
     } = props;

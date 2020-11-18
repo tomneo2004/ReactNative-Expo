@@ -4,11 +4,11 @@ import { View, Text } from 'react-native';
 import Button from '../components/Button';
 import { TStackParamList } from '../navigation/navigation';
 
-export interface IPostProps{
+export interface IPostParams{
     postTitle?:string;
 }
 
-type TPostProps = StackScreenProps<TStackParamList, 'Post'>;
+interface IPostProps extends StackScreenProps<TStackParamList, 'Post'>{}
 
 const renderPostTitle = (title:string)=>{
     if(!title) return null;
@@ -17,7 +17,7 @@ const renderPostTitle = (title:string)=>{
         <Text>Title: {title}</Text>
     )
 }
-const Post = (props:TPostProps) => {
+const Post = (props:IPostProps) => {
     const {
         route,
         navigation
