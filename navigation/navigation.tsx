@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, HeaderTitle } from '@react-navigation/stack';
 import HomeScreen, {IHomeParams} from '../views/home';
 import DetailsScreen, {IDetailParams} from '../views/detail';
 import PostScreen, {IPostParams} from '../views/post';
 import AddPostScreen, {IAddPostParams} from '../views/addPost';
 import ImageShareScreen, {IImageShareParams} from '../views/imageShare';
+import {Image} from 'react-native'
 
 export type TStackParamList = {
     Home: IHomeParams;
@@ -17,12 +18,29 @@ export type TStackParamList = {
 
 const Stack = createStackNavigator<TStackParamList>();
 
+function LogoTitle() {
+  return (
+    <Image
+      style={{ width: 40, height: 40 }}
+      source={require('../assets/react-native-logo.png')}
+    />
+  );
+}
+
 export default function Navigation() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Home' screenOptions={{title: 'View'}}>
+      <Stack.Navigator initialRouteName='Home'
+      screenOptions={{
+        title: 'View',
+        headerStyle: {backgroundColor: '#f4511e'},
+        headerTintColor: '#fff',
+        headerTitleStyle: {fontWeight: 'bold',},
+        headerTitle: ()=><LogoTitle />,
+        }}>
         <Stack.Screen name='Home' component={HomeScreen} options={{ title: 'Overview' }} />
-        <Stack.Screen name="Details" component={DetailsScreen} options={{title:'Details'}}
+        <Stack.Screen name="Details" component={DetailsScreen} 
+        options={{title:'Details'}}
         initialParams={{itemId:0}}
         />
         <Stack.Screen name='Post' component={PostScreen} options={{title:'Post'}} />
