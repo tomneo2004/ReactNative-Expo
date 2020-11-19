@@ -6,7 +6,7 @@ import DetailsScreen, {IDetailParams} from '../views/detail';
 import PostScreen, {IPostParams} from '../views/post';
 import AddPostScreen, {IAddPostParams} from '../views/addPost';
 import ImageShareScreen, {IImageShareParams} from '../views/imageShare';
-import {Image} from 'react-native'
+import {Button, Image} from 'react-native'
 
 export type TStackParamList = {
     Home: IHomeParams;
@@ -36,7 +36,14 @@ export default function Navigation() {
         headerStyle: {backgroundColor: '#f4511e'},
         headerTintColor: '#fff',
         headerTitleStyle: {fontWeight: 'bold',},
-        headerTitle: ()=><LogoTitle />,
+        headerTitle: ()=>(<LogoTitle />),
+        headerRight: () => (
+          <Button
+            onPress={() => alert('This is a button!')}
+            title="Info"
+            color="#fff"
+          />
+        ),
         }}>
         <Stack.Screen name='Home' component={HomeScreen} options={{ title: 'Overview' }} />
         <Stack.Screen name="Details" component={DetailsScreen} 
