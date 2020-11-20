@@ -6,6 +6,7 @@ import DetailsScreen, {IDetailParams} from '../views/detail';
 import PostScreen, {IPostParams} from '../views/post';
 import AddPostScreen, {IAddPostParams} from '../views/addPost';
 import ImageShareScreen, {IImageShareParams} from '../views/imageShare';
+import SettingScreen, {ISettingParams} from '../views/setting/setting';
 import {Button, Image} from 'react-native'
 
 export type TStackParamList = {
@@ -14,6 +15,7 @@ export type TStackParamList = {
     Post: IPostParams;
     AddPost: IAddPostParams;
     ImageShare: IImageShareParams;
+    Setting:ISettingParams;
 }
 
 const Stack = createStackNavigator<TStackParamList>();
@@ -55,6 +57,7 @@ export default function Navigation() {
         <Stack.Screen name='ImageShare' component={ImageShareScreen} 
         options={({route})=>({title: route.params.title})} 
         />
+        <Stack.Screen name='Setting' component={SettingScreen} options={{title:'Setting'}} />
       </Stack.Navigator>
     </NavigationContainer>
   )
