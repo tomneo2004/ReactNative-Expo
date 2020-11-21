@@ -1,6 +1,6 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import {TStackParamList} from '../../navigation/navigation';
-import Ionicons from 'react-native-ionicons'
+import {Ionicons} from '@expo/vector-icons'
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ProfileScreen, {IProfileParams} from './profile';
@@ -23,9 +23,8 @@ const Setting = (props:ISettingProps) => {
     screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
             let iconName;
-            console.log(route.name, focused)
             if (route.name === 'Profile') {
-                iconName = focused ? 'information-circle': 'information-circle-outline';
+                iconName = focused ? 'ios-information-circle': 'ios-information-circle-outline';
             } else if (route.name === 'System') {
                 iconName = focused ? 'ios-list-box' : 'ios-list';
             }
