@@ -34,6 +34,7 @@ export default function HomeScreen(props:IHomeProps){
       onPress={()=>navigation.navigate('ImageShare', {title: 'Image Share'})} 
       />
       <CButton title='Go To Setting' onPress={()=>navigation.navigate('Setting', {screen:'System'})} />
+      <CButton title='Go To Store' onPress={()=>navigation.navigate('Store')} />
     </View>
   )
 }

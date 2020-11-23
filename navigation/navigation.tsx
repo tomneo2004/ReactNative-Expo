@@ -8,6 +8,7 @@ import AddPostScreen, {IAddPostParams} from '../views/addPost';
 import ImageShareScreen, {IImageShareParams} from '../views/imageShare';
 import SettingScreen, {ISettingParams} from '../views/setting/setting';
 import {Button, Image} from 'react-native'
+import Store, { IStoreParams } from '../views/store/store';
 
 export type TStackParamList = {
     Home: IHomeParams;
@@ -16,6 +17,7 @@ export type TStackParamList = {
     AddPost: IAddPostParams;
     ImageShare: IImageShareParams;
     Setting:ISettingParams;
+    Store: IStoreParams;
 }
 
 const Stack = createStackNavigator<TStackParamList>();
@@ -58,6 +60,7 @@ export default function Navigation() {
         options={({route})=>({title: route.params.title})} 
         />
         <Stack.Screen name='Setting' component={SettingScreen} options={{title:'Setting'}} />
+        <Stack.Screen name='Store' component={Store} />
       </Stack.Navigator>
     </NavigationContainer>
   )
