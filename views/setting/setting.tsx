@@ -38,7 +38,7 @@ const Setting = (props:ISettingProps) => {
         inactiveTintColor: 'gray',
     }}
     >
-        <Tab.Screen name='Profile' component={ProfileScreen} />
+        <Tab.Screen name='Profile' component={ProfileScreen} options={{tabBarBadge:33}} />
         <Tab.Screen name='System' component={SystemScreen} />
     </Tab.Navigator>
     );
