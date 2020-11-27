@@ -3,6 +3,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { View, Text, Button } from 'react-native';
 import CButton from '../components/Button';
 import {TStackParamList} from '../navigation/navigation';
+import { AuthContext } from '../components/Auth';
 
 export interface IHomeParams {
 }
@@ -15,6 +16,8 @@ export default function HomeScreen(props:IHomeProps){
   } = props;
 
   const [count, setCount] = React.useState<number>(0);
+
+  const authContext = React.useContext(AuthContext);
 
   React.useLayoutEffect(()=>{
     navigation.setOptions({
@@ -35,6 +38,7 @@ export default function HomeScreen(props:IHomeProps){
       />
       <CButton title='Go To Setting' onPress={()=>navigation.navigate('Setting', {screen:'System'})} />
       <CButton title='Go To Store' onPress={()=>navigation.navigate('Store')} />
+      <CButton title='Sign out' onPress={()=>authContext.signout()} />
     </View>
   )
 }
