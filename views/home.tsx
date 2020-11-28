@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StackScreenProps } from '@react-navigation/stack';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, StatusBar } from 'react-native';
 import CButton from '../components/Button';
 import {TStackParamList} from '../navigation/navigation';
 import { AuthContext } from '../components/Auth';
@@ -30,6 +30,7 @@ export default function HomeScreen(props:IHomeProps){
 
   return (
     <SafeAreaView style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+      <StatusBar barStyle="light-content" backgroundColor="#6a51ae" />
       <Text>Home Screen</Text>
       <Text>Count: {count}</Text>
       <CButton title='Go To Detail' onPress={()=>navigation.navigate('Details', {itemId:97})} />

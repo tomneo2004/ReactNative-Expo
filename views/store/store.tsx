@@ -3,6 +3,7 @@ import {createDrawerNavigator, DrawerContentComponentProps, DrawerContentScrollV
 import StoreHome, { IStoreHomeParams } from './storeHome';
 import Book, { IBookParams } from './book';
 import { DrawerActions } from '@react-navigation/native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export interface IStoreParams {}
 
@@ -33,10 +34,12 @@ const Drawer = createDrawerNavigator<TDrawerParamList>();
 
 const Store = () => {
     return (
+        <SafeAreaProvider>
         <Drawer.Navigator drawerPosition='right' drawerContent={props=><CustomDrawer {...props} />}>
             <Drawer.Screen name='Home' component={StoreHome} />
             <Drawer.Screen name='Book' component={Book} />
         </Drawer.Navigator>
+        </SafeAreaProvider>
     );
 };
 
