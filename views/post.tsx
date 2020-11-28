@@ -1,6 +1,7 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react';
 import { View, Text } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Button from '../components/Button';
 import { TStackParamList } from '../navigation/navigation';
 
@@ -24,11 +25,11 @@ const Post = (props:IPostProps) => {
     } = props;
 
     return (
-        <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+        <SafeAreaView style={{flex:1, justifyContent:'center', alignItems:'center'}}>
             <Text>Create a new post</Text>
             {route.params?renderPostTitle(route.params.postTitle):null}
             <Button title='Create Post' onPress={()=>navigation.navigate('AddPost')} />
-        </View>
+        </SafeAreaView>
     );
 };
 

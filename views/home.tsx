@@ -4,6 +4,7 @@ import { View, Text, Button } from 'react-native';
 import CButton from '../components/Button';
 import {TStackParamList} from '../navigation/navigation';
 import { AuthContext } from '../components/Auth';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export interface IHomeParams {
 }
@@ -28,7 +29,7 @@ export default function HomeScreen(props:IHomeProps){
   }, [navigation])
 
   return (
-    <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+    <SafeAreaView style={{flex:1, justifyContent:'center', alignItems:'center'}}>
       <Text>Home Screen</Text>
       <Text>Count: {count}</Text>
       <CButton title='Go To Detail' onPress={()=>navigation.navigate('Details', {itemId:97})} />
@@ -39,6 +40,6 @@ export default function HomeScreen(props:IHomeProps){
       <CButton title='Go To Setting' onPress={()=>navigation.navigate('Setting', {screen:'System'})} />
       <CButton title='Go To Store' onPress={()=>navigation.navigate('Store')} />
       <CButton title='Sign out' onPress={()=>authContext.signout()} />
-    </View>
+    </SafeAreaView>
   )
 }
