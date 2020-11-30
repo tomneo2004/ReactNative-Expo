@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, NavigationContainerProps } from '@react-navigation/native';
 import { createStackNavigator, HeaderTitle } from '@react-navigation/stack';
 import HomeScreen, {IHomeParams} from '../views/home';
 import DetailsScreen, {IDetailParams} from '../views/detail';
@@ -12,7 +12,9 @@ import {Button, Image} from 'react-native'
 import Store, { IStoreParams } from '../views/store/store';
 import { AuthContext } from '../components/Auth';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import * as Linking from 'expo-linking';
 
+const prefix = Linking.makeUrl('/');
 
 
 export type TStackParamList = {
@@ -64,11 +66,15 @@ function routing(isSignin:boolean){
 
 export default function Navigation() {
 
+  const linking = {
+    prefixes: [prefix],
+  };
+
   const auth = React.useContext(AuthContext);
 
   return (
     <SafeAreaProvider>
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       <Stack.Navigator initialRouteName='Home'
       screenOptions={{
         title: 'View',

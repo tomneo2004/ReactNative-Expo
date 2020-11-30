@@ -1,3 +1,4 @@
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react';
 import { View, Text } from 'react-native';
@@ -20,9 +21,10 @@ const renderPostTitle = (title:string)=>{
 }
 const Post = (props:IPostProps) => {
     const {
-        route,
-        navigation
+        route
     } = props;
+
+    const navigation = useNavigation();
 
     return (
         <SafeAreaView style={{flex:1, justifyContent:'center', alignItems:'center'}}>
