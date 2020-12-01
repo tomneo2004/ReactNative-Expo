@@ -66,8 +66,15 @@ function routing(isSignin:boolean){
 
 export default function Navigation() {
 
+  console.log('link url',prefix);
   const linking = {
     prefixes: [prefix],
+    config: {
+      screens: {
+        //Details screen handle uri /item and accpte param itemId in uri
+        Details: '/item/:itemId'
+      },
+    },
   };
 
   const auth = React.useContext(AuthContext);

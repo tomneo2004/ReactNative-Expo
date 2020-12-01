@@ -12,7 +12,7 @@ interface IAuthWrapperProps {
 
 const AuthWrapper = (props:IAuthWrapperProps)=>{
     const {children} = props;
-    const [authorized, setAuthorized] = React.useState<boolean>(false);
+    const [authorized, setAuthorized] = React.useState<boolean>(true);
 
     return (
         <AuthContext.Provider value={{
