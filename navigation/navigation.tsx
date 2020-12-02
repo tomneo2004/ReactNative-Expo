@@ -66,13 +66,41 @@ function routing(isSignin:boolean){
 
 export default function Navigation() {
 
-  console.log('link url',prefix);
   const linking = {
     prefixes: [prefix],
     config: {
       screens: {
+        initialRouteName: 'Home',
         //Details screen handle uri /item and accpte param itemId in uri
-        Details: '/item/:itemId'
+        //? is optional param
+        Details:{ 
+          path: 'item/:itemId?',
+          // parse: {
+          //   itemId: (itemId:string)=>(Number(itemId)+1).toString()
+          // }
+        },
+        Setting: {
+          path: 'setting',
+          screens: {
+            Profile: {
+              path: 'profile/:name?'
+            },
+            System: {
+              path: 'system',
+            },
+            InvalidSettings: '*',
+          }
+        },
+        Store: {
+          path: 'store',
+          screens: {
+            Book: {
+              path: 'book',
+              exact: true,
+            }
+          }
+        },
+        NotFound: '*'
       },
     },
   };
