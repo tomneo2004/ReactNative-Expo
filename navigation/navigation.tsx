@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NavigationContainer, NavigationContainerProps } from '@react-navigation/native';
+import { NavigationContainer, NavigationContainerProps, NavigationContainerRef } from '@react-navigation/native';
 import { createStackNavigator, HeaderTitle } from '@react-navigation/stack';
 import HomeScreen, {IHomeParams} from '../views/home';
 import DetailsScreen, {IDetailParams} from '../views/detail';
@@ -113,10 +113,30 @@ export default function Navigation() {
   };
 
   const auth = React.useContext(AuthContext);
+  const routeNameRef = React.useRef<string>();
+  const navRef = React.useRef<NavigationContainerRef>();
 
   return (
     <SafeAreaProvider>
-    <NavigationContainer linking={linking}>
+    <NavigationContainer 
+    ref={navRef} 
+    linking={linking}
+    onReady={()=>routeNameRef.current = navRef.current.getCurrentRoute().name}
+    onStateChange={()=>{
+      const previousRouteName = routeNameRef.current;
+      const currentRouteName = navRef.current.getCurrentRoute().name;
+
+      if (previousRouteName !== currentRouteName) {
+        // The line below uses the expo-firebase-analytics tracker
+        // https://docs.expo.io/versions/latest/sdk/firebase-analytics/
+        // Change this line to use another Mobile analytics SDK
+        // Analytics.setCurrentScreen(currentRouteName, currentRouteName);
+        alert(`The route changed to ${currentRouteName} from ${previousRouteName}`);
+      }
+
+      routeNameRef.current = currentRouteName;
+    }}
+    >
       <Stack.Navigator initialRouteName='Home'
       screenOptions={{
         title: 'View',
