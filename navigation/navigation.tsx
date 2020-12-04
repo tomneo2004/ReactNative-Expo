@@ -26,6 +26,7 @@ export type TStackParamList = {
     Setting:ISettingParams;
     Store: IStoreParams;
     Signin: ISigninParams;
+    NotFound: {};
 }
 
 const Stack = createStackNavigator<TStackParamList>();
@@ -55,6 +56,7 @@ function routing(isSignin:boolean){
         />
         <Stack.Screen name='Setting' component={SettingScreen} options={{title:'Setting'}} />
         <Stack.Screen name='Store' component={Store} />
+        <Stack.Screen name='NotFound' component={SettingScreen} />
       </React.Fragment>
     )
   }
@@ -70,14 +72,19 @@ export default function Navigation() {
     prefixes: [prefix],
     config: {
       screens: {
-        initialRouteName: 'Home',
+        Home:{
+          path: '',
+        },
         //Details screen handle uri /item and accpte param itemId in uri
         //? is optional param
         Details:{ 
           path: 'item/:itemId?',
           // parse: {
           //   itemId: (itemId:string)=>(Number(itemId)+1).toString()
-          // }
+          // },
+          // stringify: {
+          //   itemId: (itemId:string)=>(Number(itemId)+1).toString()
+          // },
         },
         Setting: {
           path: 'setting',
