@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NavigationContainer, NavigationContainerProps, NavigationContainerRef } from '@react-navigation/native';
+import { NavigationContainer, NavigationContainerProps, NavigationContainerRef, DefaultTheme,  } from '@react-navigation/native';
 import { createStackNavigator, HeaderTitle } from '@react-navigation/stack';
 import HomeScreen, {IHomeParams} from '../views/home';
 import DetailsScreen, {IDetailParams} from '../views/detail';
@@ -119,7 +119,8 @@ export default function Navigation() {
   return (
     <SafeAreaProvider>
     <NavigationContainer 
-    ref={navRef} 
+    ref={navRef}
+    theme={DefaultTheme} 
     linking={linking}
     onReady={()=>routeNameRef.current = navRef.current.getCurrentRoute().name}
     onStateChange={()=>{
