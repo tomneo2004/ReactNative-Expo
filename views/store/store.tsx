@@ -8,7 +8,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 export interface IStoreParams {}
 
 export type TDrawerParamList = {
-    Home: IStoreHomeParams;
+    StoreHome: IStoreHomeParams;
     Book: IBookParams;
 }
 
@@ -35,8 +35,8 @@ const Drawer = createDrawerNavigator<TDrawerParamList>();
 const Store = () => {
     return (
         <SafeAreaProvider>
-        <Drawer.Navigator drawerPosition='right' drawerContent={props=><CustomDrawer {...props} />}>
-            <Drawer.Screen name='Home' component={StoreHome} />
+        <Drawer.Navigator initialRouteName='StoreHome' drawerPosition='right' drawerContent={props=><CustomDrawer {...props} />}>
+            <Drawer.Screen name='StoreHome' component={StoreHome} />
             <Drawer.Screen name='Book' component={Book} />
         </Drawer.Navigator>
         </SafeAreaProvider>
