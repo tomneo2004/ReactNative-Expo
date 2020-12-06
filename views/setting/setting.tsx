@@ -39,9 +39,14 @@ const Setting = (props:ISettingProps) => {
             activeTintColor: 'tomato',
             inactiveTintColor: 'gray',
         }}
+        initialRouteName='Profile'
         >
-            <Tab.Screen name='Profile' component={ProfileScreen} options={{tabBarBadge:33}} />
-            <Tab.Screen name='System' component={SystemScreen} />
+            <Tab.Screen name='Profile' component={ProfileScreen} options={{tabBarBadge:33}}
+            initialParams={{username:'Unknow'}}
+            />
+            <Tab.Screen name='System' component={SystemScreen}
+            initialParams={{ownerName:'IOwnYou'}}
+            />
         </Tab.Navigator>
         </SafeAreaProvider>
     );

@@ -93,7 +93,7 @@ export default function Navigation() {
               path: 'profile/:name?'
             },
             System: {
-              path: 'system',
+              path: 'system/:ownerName?',
             },
             InvalidSettings: '*',
           }
@@ -102,7 +102,7 @@ export default function Navigation() {
           path: 'store',
           screens: {
             Book: {
-              path: 'book',
+              path: 'book/:bookName?/:bookId',
               exact: true,
             }
           }

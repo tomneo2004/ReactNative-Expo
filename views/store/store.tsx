@@ -37,7 +37,7 @@ const Store = () => {
         <SafeAreaProvider>
         <Drawer.Navigator initialRouteName='StoreHome' drawerPosition='right' drawerContent={props=><CustomDrawer {...props} />}>
             <Drawer.Screen name='StoreHome' component={StoreHome} />
-            <Drawer.Screen name='Book' component={Book} />
+            <Drawer.Screen name='Book' component={Book} initialParams={{bookName:'One day', bookId:188909}} />
         </Drawer.Navigator>
         </SafeAreaProvider>
     );
