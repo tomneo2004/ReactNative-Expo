@@ -1,5 +1,5 @@
 import React from 'react';
-import {createDrawerNavigator, DrawerContentComponentProps, DrawerContentScrollView, DrawerItem, DrawerItemList, DrawerScreenProps} from '@react-navigation/drawer';
+import {createDrawerNavigator, DrawerContentComponentProps, DrawerContentScrollView, DrawerItem, DrawerItemList, DrawerNavigationOptions, DrawerScreenProps} from '@react-navigation/drawer';
 import StoreHome, { IStoreHomeParams } from './storeHome';
 import Book, { IBookParams } from './book';
 import { DrawerActions } from '@react-navigation/native';
@@ -13,6 +13,10 @@ export type TDrawerParamList = {
 }
 
 interface ICustomDrawerProps extends DrawerContentComponentProps{}
+
+const options: DrawerNavigationOptions = {
+    headerShown: true,
+}
 
 const CustomDrawer = (props:ICustomDrawerProps)=>{
     return (
@@ -36,7 +40,7 @@ const Store = () => {
     return (
         <SafeAreaProvider>
         <Drawer.Navigator initialRouteName='StoreHome' drawerPosition='right' drawerContent={props=><CustomDrawer {...props} />}>
-            <Drawer.Screen name='StoreHome' component={StoreHome} />
+            <Drawer.Screen name='StoreHome' component={StoreHome} options={options} />
             <Drawer.Screen name='Book' component={Book} initialParams={{bookName:'One day', bookId:188909}} />
         </Drawer.Navigator>
         </SafeAreaProvider>
