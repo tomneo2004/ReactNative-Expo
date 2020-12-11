@@ -8,13 +8,14 @@ import AddPostScreen, {IAddPostParams} from '../views/addPost';
 import ImageShareScreen, {IImageShareParams} from '../views/imageShare';
 import SettingScreen, {ISettingParams} from '../views/setting/setting';
 import SigninScreen, {ISigninParams} from '../views/user/signin';
-import {Button, Image} from 'react-native'
+import {Button, Image, View} from 'react-native'
 import Store, { IStoreParams } from '../views/store/store';
 import { AuthContext } from '../components/Auth';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import * as Linking from 'expo-linking';
+import Link from './links';
+// import * as Linking from 'expo-linking';
 
-const prefix = Linking.makeUrl('/');
+// const prefix = Linking.makeUrl('/');
 
 
 export type TStackParamList = {
@@ -66,51 +67,19 @@ function routing(isSignin:boolean){
   )
 }
 
-export default function Navigation() {
+function rightBarButtons(){
+  return (
+    <View>
+      <Button
+            onPress={() => alert('This is a button!')}
+            title="Info"
+            color="#fff"
+      />
+    </View>
+  )
+}
 
-  const linking = {
-    prefixes: [prefix],
-    config: {
-      screens: {
-        Home:{
-          path: '',
-        },
-        //Details screen handle uri /item and accpte param itemId in uri
-        //? is optional param
-        Details:{ 
-          path: 'item/:itemId?',
-          // parse: {
-          //   itemId: (itemId:string)=>(Number(itemId)+1).toString()
-          // },
-          // stringify: {
-          //   itemId: (itemId:string)=>(Number(itemId)+1).toString()
-          // },
-        },
-        Setting: {
-          path: 'setting',
-          screens: {
-            Profile: {
-              path: 'profile/:name?'
-            },
-            System: {
-              path: 'system/:ownerName?',
-            },
-            InvalidSettings: '*',
-          }
-        },
-        Store: {
-          path: 'store',
-          screens: {
-            Book: {
-              path: 'book/:bookName?/:bookId',
-              exact: true,
-            }
-          }
-        },
-        NotFound: '*'
-      },
-    },
-  };
+export default function Navigation() {
 
   const auth = React.useContext(AuthContext);
   const routeNameRef = React.useRef<string>();
@@ -121,7 +90,7 @@ export default function Navigation() {
     <NavigationContainer 
     ref={navRef}
     theme={DefaultTheme} 
-    linking={linking}
+    linking={Link}
     onReady={()=>routeNameRef.current = navRef.current.getCurrentRoute().name}
     onStateChange={()=>{
       const previousRouteName = routeNameRef.current;
@@ -145,13 +114,7 @@ export default function Navigation() {
         headerTintColor: '#fff',
         headerTitleStyle: {fontWeight: 'bold',},
         headerTitle: ()=>(<LogoTitle />),
-        headerRight: () => (
-          <Button
-            onPress={() => alert('This is a button!')}
-            title="Info"
-            color="#fff"
-          />
-        ),
+        headerRight: rightBarButtons,
         }}>
         {routing(auth.isSignin)}
       </Stack.Navigator>

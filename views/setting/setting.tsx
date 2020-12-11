@@ -6,6 +6,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ProfileScreen, {IProfileParams} from './profile';
 import SystemScreen, {ISystemParams} from './system';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Avatar } from 'react-native-elements';
+import { View } from 'react-native';
 
 export type TTabeParamList = {
     Profile: IProfileParams,
@@ -19,6 +21,22 @@ interface ISettingProps extends StackScreenProps<TStackParamList, 'Setting'>{}
 const Tab = createBottomTabNavigator<TTabeParamList>();
 
 const Setting = (props:ISettingProps) => {
+    const {
+        navigation,
+    } = props;
+
+    React.useLayoutEffect(()=>{
+        navigation.setOptions({
+            headerRight: ()=>(
+                <Avatar 
+                source={{
+                    uri:'https://png.pngtree.com/png-clipart/20190924/original/pngtree-human-avatar-free-vector-png-image_4825373.jpg'
+                }}
+                rounded
+                />
+                )
+        })
+    },[navigation]);
     return (
         <SafeAreaProvider>
         <Tab.Navigator 
