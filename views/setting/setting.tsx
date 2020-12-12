@@ -28,11 +28,13 @@ const Setting = (props:ISettingProps) => {
     React.useLayoutEffect(()=>{
         navigation.setOptions({
             headerRight: ()=>(
-                <Avatar 
+                <Avatar
+                containerStyle={{marginRight:8}}
                 source={{
                     uri:'https://png.pngtree.com/png-clipart/20190924/original/pngtree-human-avatar-free-vector-png-image_4825373.jpg'
                 }}
                 rounded
+                onLongPress={()=>alert('Long pressed on avatar')}
                 />
                 )
         })
