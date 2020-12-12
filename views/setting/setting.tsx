@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ProfileScreen, {IProfileParams} from './profile';
 import SystemScreen, {ISystemParams} from './system';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Avatar } from 'react-native-elements';
+import { Avatar, Badge } from 'react-native-elements';
 import { View } from 'react-native';
 
 export type TTabeParamList = {
@@ -28,14 +28,20 @@ const Setting = (props:ISettingProps) => {
     React.useLayoutEffect(()=>{
         navigation.setOptions({
             headerRight: ()=>(
-                <Avatar
-                containerStyle={{marginRight:8}}
-                source={{
-                    uri:'https://png.pngtree.com/png-clipart/20190924/original/pngtree-human-avatar-free-vector-png-image_4825373.jpg'
-                }}
-                rounded
-                onLongPress={()=>alert('Long pressed on avatar')}
-                />
+                <View style={{marginRight:8}}>
+                    <Avatar
+                    source={{
+                        uri:'https://png.pngtree.com/png-clipart/20190924/original/pngtree-human-avatar-free-vector-png-image_4825373.jpg'
+                    }}
+                    rounded
+                    onLongPress={()=>alert('Long pressed on avatar')}
+                    />
+                    <Badge
+                    value={999999999}
+                    status="warning"
+                    containerStyle={{ position: 'absolute', top: -10, right: -4 }}
+                    />
+                </View>
                 )
         })
     },[navigation]);
