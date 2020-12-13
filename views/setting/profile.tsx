@@ -3,8 +3,8 @@ import React from 'react';
 import { View, Text, SafeAreaView, StatusBar } from 'react-native';
 import FocusAwareStatusBar from '../../components/FocusAwareStatusBar';
 import {TTabeParamList} from './setting';
-import CButton from '../../components/Button';
-import { BottomSheet, ListItem } from 'react-native-elements';
+import { BottomSheet, Button, ListItem } from 'react-native-elements';
+import { LinearGradient } from 'react-native-linear-gradient';
 
 export interface IProfileParams {
     username: string;
@@ -35,8 +35,15 @@ const Profile = (props:IProfileProps) => {
             <FocusAwareStatusBar style="dark" backgroundColor="#ecf0f1" />
             <Text>This is profile screen</Text>
             <Text>{route.params.username}</Text>
-            <CButton 
+            <Button 
             title='Bottom Menu'
+            raised
+            ViewComponent={LinearGradient} // Don't forget this!
+            linearGradientProps={{
+                colors: ['red', 'pink'],
+                start: { x: 1, y: 0.3 },
+                end: { x: 1, y: 1 },
+            }}
             onPress={()=>setShowMenu(true)}
             />
             <BottomSheet isVisible={showMenu} modalProps={{
