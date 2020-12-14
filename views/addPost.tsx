@@ -2,6 +2,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react';
 import { View, Text, TextInput } from 'react-native';
 import { Card } from 'react-native-elements';
+import { ScrollView } from 'react-native-gesture-handler';
 import Button from '../components/Button';
 import { TStackParamList } from '../navigation/navigation';
 
@@ -20,7 +21,7 @@ const AddPost = (props:IAddPostProps) => {
     }
 
     return (
-        <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+        <ScrollView style={{flex:1}} alwaysBounceVertical={false}>
             <Card 
             containerStyle={{width:'90%', borderRadius:5}}
             wrapperStyle={{padding:'5%'}}
@@ -32,7 +33,7 @@ const AddPost = (props:IAddPostProps) => {
                 />
                 <Button title='Create' onPress={()=>navigation.navigate('Post', {postTitle:title})} />
             </Card>
-        </View>
+        </ScrollView>
     );
 };
 
