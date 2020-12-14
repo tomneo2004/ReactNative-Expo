@@ -1,6 +1,7 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react';
 import { View, Text, TextInput } from 'react-native';
+import { Card } from 'react-native-elements';
 import Button from '../components/Button';
 import { TStackParamList } from '../navigation/navigation';
 
@@ -20,11 +21,17 @@ const AddPost = (props:IAddPostProps) => {
 
     return (
         <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
-            <Text>Add post</Text>
-            <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1, alignSelf:'stretch'}} 
-            value={title} onChangeText={handleTitleChange} 
-            />
-            <Button title='Add Post' onPress={()=>navigation.navigate('Post', {postTitle:title})} />
+            <Card 
+            containerStyle={{width:'90%', borderRadius:5}}
+            wrapperStyle={{padding:'5%'}}
+            >
+                <Card.Title>Add post</Card.Title>
+                <Card.Divider />
+                <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1, alignSelf:'stretch'}} 
+                value={title} onChangeText={handleTitleChange} 
+                />
+                <Button title='Create' onPress={()=>navigation.navigate('Post', {postTitle:title})} />
+            </Card>
         </View>
     );
 };
