@@ -1,7 +1,7 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react';
 import { View, Text, TextInput } from 'react-native';
-import { Card, CheckBox } from 'react-native-elements';
+import { Card, CheckBox, Input } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import Button from '../components/Button';
 import { TStackParamList } from '../navigation/navigation';
@@ -30,8 +30,13 @@ const AddPost = (props:IAddPostProps) => {
             >
                 <Card.Title>Add post</Card.Title>
                 <Card.Divider />
-                <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1, alignSelf:'stretch'}} 
+                {/* <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1, alignSelf:'stretch'}} 
                 value={title} onChangeText={handleTitleChange} 
+                /> */}
+                <Input 
+                placeholder='Enter post name'
+                leftIcon={{ type: 'font-awesome', name: 'chevron-left' }}
+                onChangeText={handleTitleChange}
                 />
                 <CheckBox
                 containerStyle={{
