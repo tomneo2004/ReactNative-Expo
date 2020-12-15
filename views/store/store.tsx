@@ -4,6 +4,8 @@ import StoreHome, { IStoreHomeParams } from './storeHome';
 import Book, { IBookParams } from './book';
 import { DrawerActions } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { StackScreenProps } from '@react-navigation/stack';
+import { TStackParamList } from '../../navigation/navigation';
 
 export interface IStoreParams {}
 
@@ -13,6 +15,8 @@ export type TDrawerParamList = {
 }
 
 interface ICustomDrawerProps extends DrawerContentComponentProps{}
+
+interface IStoreProps extends StackScreenProps<TStackParamList, 'Store'>{}
 
 const options: DrawerNavigationOptions = {
     headerShown: true,
@@ -36,7 +40,8 @@ const CustomDrawer = (props:ICustomDrawerProps)=>{
 
 const Drawer = createDrawerNavigator<TDrawerParamList>();
 
-const Store = () => {
+const Store = (props:IStoreProps) => {
+
     return (
         <SafeAreaProvider>
         <Drawer.Navigator initialRouteName='StoreHome' drawerPosition='right' drawerContent={props=><CustomDrawer {...props} />}>
