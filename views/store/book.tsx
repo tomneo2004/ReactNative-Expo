@@ -4,6 +4,7 @@ import { View, Text, SafeAreaView } from 'react-native';
 import { Header } from 'react-native-elements';
 import FocusAwareStatusBar from '../../components/FocusAwareStatusBar';
 import { TDrawerParamList } from './store';
+import { Icon } from 'react-native-elements'
 
 export interface IBookParams{
     bookName: string;
@@ -22,7 +23,7 @@ const Book = (props:IBookProps) => {
             <FocusAwareStatusBar style='dark' backgroundColor='#000' />
             <Header
             leftComponent={{ icon: 'menu', color: '#fff' }}
-            centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
+            centerComponent={<Icon raised reverse name='heartbeat' type='font-awesome' />}
             rightComponent={{ icon: 'home', color: '#fff' }}
             containerStyle={{paddingTop:0}}
             />
