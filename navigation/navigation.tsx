@@ -8,11 +8,13 @@ import AddPostScreen, {IAddPostParams} from '../views/addPost';
 import ImageShareScreen, {IImageShareParams} from '../views/imageShare';
 import SettingScreen, {ISettingParams} from '../views/setting/setting';
 import SigninScreen, {ISigninParams} from '../views/user/signin';
-import {Button, Image, View} from 'react-native'
+import {Image, View, Text} from 'react-native';
+import {Button as RNButton} from 'react-native';
 import Store, { IStoreParams } from '../views/store/store';
 import { AuthContext } from '../components/Auth';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Link from './links';
+import { Overlay, Button } from 'react-native-elements';
 // import * as Linking from 'expo-linking';
 
 // const prefix = Linking.makeUrl('/');
@@ -70,7 +72,7 @@ function routing(isSignin:boolean){
 function rightBarButtons(){
   return (
     <View>
-      <Button
+      <RNButton
             onPress={() => alert('This is a button!')}
             title="Info"
             color="#fff"
@@ -84,41 +86,63 @@ export default function Navigation() {
   const auth = React.useContext(AuthContext);
   const routeNameRef = React.useRef<string>();
   const navRef = React.useRef<NavigationContainerRef>();
+  const [overlayVisible, setOverlayVisible] = React.useState<boolean>(false);
 
   return (
     <SafeAreaProvider>
-    <NavigationContainer 
-    ref={navRef}
-    theme={DefaultTheme} 
-    linking={Link}
-    onReady={()=>routeNameRef.current = navRef.current.getCurrentRoute().name}
-    onStateChange={()=>{
-      const previousRouteName = routeNameRef.current;
-      const currentRouteName = navRef.current.getCurrentRoute().name;
+      <Overlay 
+      isVisible={overlayVisible} 
+      onBackdropPress={()=>setOverlayVisible(false)}
+      animationType='fade'
+      backdropStyle={{backgroundColor:'rgba(25,25,25,0.8)'}}
+      >
+        <React.Fragment>
+          <Text>Hello from Overlay!</Text>
+          <Button title='Close' onPress={()=>setOverlayVisible(false)} />
+        </React.Fragment>
+      </Overlay>
+      <NavigationContainer 
+      ref={navRef}
+      theme={DefaultTheme} 
+      linking={Link}
+      onReady={()=>routeNameRef.current = navRef.current.getCurrentRoute().name}
+      onStateChange={()=>{
+        const previousRouteName = routeNameRef.current;
+        const currentRouteName = navRef.current.getCurrentRoute().name;
 
-      if (previousRouteName !== currentRouteName) {
-        // The line below uses the expo-firebase-analytics tracker
-        // https://docs.expo.io/versions/latest/sdk/firebase-analytics/
-        // Change this line to use another Mobile analytics SDK
-        // Analytics.setCurrentScreen(currentRouteName, currentRouteName);
-        alert(`The route changed to ${currentRouteName} from ${previousRouteName}`);
-      }
+        if (previousRouteName !== currentRouteName) {
+          // The line below uses the expo-firebase-analytics tracker
+          // https://docs.expo.io/versions/latest/sdk/firebase-analytics/
+          // Change this line to use another Mobile analytics SDK
+          // Analytics.setCurrentScreen(currentRouteName, currentRouteName);
+          alert(`The route changed to ${currentRouteName} from ${previousRouteName}`);
+        }
 
-      routeNameRef.current = currentRouteName;
-    }}
-    >
-      <Stack.Navigator initialRouteName='Home'
-      screenOptions={{
-        title: 'View',
-        headerStyle: {backgroundColor: '#f4511e'},
-        headerTintColor: '#fff',
-        headerTitleStyle: {fontWeight: 'bold',},
-        headerTitle: ()=>(<LogoTitle />),
-        headerRight: rightBarButtons,
-        }}>
-        {routing(auth.isSignin)}
-      </Stack.Navigator>
-    </NavigationContainer>
+        routeNameRef.current = currentRouteName;
+      }}
+      >
+        <Stack.Navigator initialRouteName='Home'
+        screenOptions={{
+          title: 'View',
+          headerStyle: {backgroundColor: '#f4511e'},
+          headerTintColor: '#fff',
+          headerTitleStyle: {fontWeight: 'bold',},
+          headerTitle: ()=>(<LogoTitle />),
+          headerRight: ()=>{
+            return (
+              <View>
+                <RNButton
+                      onPress={()=>setOverlayVisible(true)}
+                      title="Info"
+                      color="#fff"
+                />
+              </View>
+            )
+          },
+          }}>
+          {routing(auth.isSignin)}
+        </Stack.Navigator>
+      </NavigationContainer>
     </SafeAreaProvider>
   )
 }
