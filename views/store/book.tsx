@@ -1,7 +1,7 @@
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import React from 'react';
 import { View, Text, SafeAreaView } from 'react-native';
-import { Header, ListItem } from 'react-native-elements';
+import { AirbnbRating, Header, ListItem } from 'react-native-elements';
 import FocusAwareStatusBar from '../../components/FocusAwareStatusBar';
 import { TDrawerParamList } from './store';
 import { Icon, Image } from 'react-native-elements'
@@ -49,6 +49,12 @@ const Book = (props:IBookProps) => {
                     key={book.title} 
                     bottomDivider
                     >
+                        <AirbnbRating
+                        count={5}
+                        reviews={["Terrible", "Bad", "Meh", "OK", "Good", "Hmm...", "Very Good", "Wow", "Amazing", "Unbelievable", "Jesus"]}
+                        defaultRating={5}
+                        size={20}
+                        />
                         <ListItem.Content>
                             <ListItem.Title>{book.title}</ListItem.Title>
                             <ListItem.Subtitle>{book.subtitle}</ListItem.Subtitle>
