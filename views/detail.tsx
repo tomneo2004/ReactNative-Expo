@@ -3,6 +3,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { View, Text, SafeAreaView, StatusBar } from 'react-native';
 import Button from '../components/Button';
 import {TStackParamList} from '../navigation/navigation';
+import { Rating } from 'react-native-elements';
 
 export interface IDetailParams {
     itemId:number;
@@ -17,13 +18,18 @@ export default function DetailsScreen(props:IDetailsProps) {
   } = props;
 
   return (
-    <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'darkgrey' }}>
       <StatusBar barStyle="dark-content" backgroundColor="#ecf0f1" />
       <Text>Details Screen</Text>
       <Text>Item ID: {route.params.itemId}</Text>
       <Button title='Go To Detail' onPress={()=>navigation.push('Details')} />
       <Button title='Go Back' onPress={()=>navigation.goBack()} />
       <Button title='Go Home' onPress={()=>navigation.popToTop()}/>
+      <Rating 
+      showRating 
+      fractions={1} 
+      startingValue={3.3} 
+      />
     </SafeAreaView>
   );
 }

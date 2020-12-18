@@ -52,8 +52,9 @@ const Book = (props:IBookProps) => {
                         <AirbnbRating
                         count={5}
                         reviews={["Terrible", "Bad", "Meh", "OK", "Good", "Hmm...", "Very Good", "Wow", "Amazing", "Unbelievable", "Jesus"]}
-                        defaultRating={5}
+                        defaultRating={book.rating}
                         size={20}
+                        isDisabled={true}
                         />
                         <ListItem.Content>
                             <ListItem.Title>{book.title}</ListItem.Title>
