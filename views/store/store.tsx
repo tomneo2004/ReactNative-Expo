@@ -6,6 +6,7 @@ import { DrawerActions } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StackScreenProps } from '@react-navigation/stack';
 import { TStackParamList } from '../../navigation/navigation';
+import { SearchBar } from 'react-native-elements';
 
 export interface IStoreParams {}
 
@@ -40,7 +41,7 @@ const CustomDrawer = (props:ICustomDrawerProps)=>{
 
 const Drawer = createDrawerNavigator<TDrawerParamList>();
 
-const Store = (props:IStoreProps) => {
+const Store = (props:IStoreProps) => { 
 
     return (
         <SafeAreaProvider>

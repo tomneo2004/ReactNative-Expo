@@ -1,7 +1,7 @@
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import React from 'react';
 import { View, Text, SafeAreaView } from 'react-native';
-import { AirbnbRating, Header, ListItem } from 'react-native-elements';
+import { AirbnbRating, Header, ListItem, SearchBar } from 'react-native-elements';
 import FocusAwareStatusBar from '../../components/FocusAwareStatusBar';
 import { TDrawerParamList } from './store';
 import { Icon, Image } from 'react-native-elements'
@@ -23,12 +23,23 @@ const Book = (props:IBookProps) => {
         route,
     } = props;
 
+    const [search, setSearch] = React.useState<string>('');
+
     return (
         <SafeAreaView style={{flex:1, alignItems:'center'}}>
             <FocusAwareStatusBar style='dark' backgroundColor='#000' />
             <Header
             leftComponent={{ icon: 'menu', color: '#fff' }}
-            centerComponent={<Icon raised reverse name='heartbeat' type='font-awesome' />}
+            centerComponent={
+                <SearchBar
+                platform='ios'
+                placeholder="Type Here..."
+                onChangeText={(text)=>setSearch(text)}
+                value={search}
+                containerStyle={{backgroundColor:'transparent'}}
+                cancelButtonProps={{color:'white'}}
+                />
+            }
             rightComponent={{ icon: 'home', color: '#fff' }}
             containerStyle={{paddingTop:0}}
             />
