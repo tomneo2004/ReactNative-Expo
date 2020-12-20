@@ -2,7 +2,7 @@ import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import React from 'react';
 import { SafeAreaView, StatusBar, Text, View } from 'react-native';
-import { ButtonGroup, Icon, Slider } from 'react-native-elements';
+import { ButtonGroup, Icon, Slider, SocialIcon } from 'react-native-elements';
 import FocusAwareStatusBar from '../../components/FocusAwareStatusBar';
 import { TTabeParamList } from './setting';
 
@@ -53,6 +53,16 @@ const System = (props:ISystemProps) => {
             }}
             />
             <Text>Slider value: {sliderValue}</Text>
+            <SocialIcon
+            raised={true}
+            type='twitter'
+            />
+            <SocialIcon
+            title='Twitter'
+            button
+            type='twitter'
+            style={{width:200}}
+            />
         </SafeAreaView>
     );
 };
