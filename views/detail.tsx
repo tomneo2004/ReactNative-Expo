@@ -27,7 +27,8 @@ export default function DetailsScreen(props:IDetailsProps) {
       caption="Some Caption Text"
       featured
       width={300}
-      overlayContainerStyle={{backgroundColor:'rgba(23,23,23,0.5)'}}
+      overlayContainerStyle={{backgroundColor:'rgba(23,23,23,0.5)', borderRadius:16}}
+      imageContainerStyle={{borderRadius:16}}
       />
       <Text>Details Screen</Text>
       <Text>Item ID: {route.params.itemId}</Text>
