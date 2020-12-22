@@ -3,7 +3,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { View, Text, SafeAreaView, StatusBar } from 'react-native';
 import Button from '../components/Button';
 import {TStackParamList} from '../navigation/navigation';
-import { Rating, Tile } from 'react-native-elements';
+import { Rating, Tile, Tooltip } from 'react-native-elements';
 
 export interface IDetailParams {
     itemId:number;
@@ -16,6 +16,13 @@ export default function DetailsScreen(props:IDetailsProps) {
     route,
     navigation
   } = props;
+
+  const tooltipRef = React.useRef<Tooltip>();
+
+  React.useEffect(()=>{
+    if(tooltipRef.current)
+      tooltipRef.current.toggleTooltip()
+  }, [])
 
   return (
     <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'darkgrey' }}>
@@ -40,6 +47,15 @@ export default function DetailsScreen(props:IDetailsProps) {
       fractions={1} 
       startingValue={3.3} 
       />
+      <Tooltip
+      // ref={tooltipRef} 
+      containerStyle={{borderRadius:18}}
+      highlightColor='red'
+      pointerColor='red'
+      popover={<Text>Info here</Text>}
+      >
+        <Text>Press me</Text>
+      </Tooltip>
     </SafeAreaView>
   );
 }
